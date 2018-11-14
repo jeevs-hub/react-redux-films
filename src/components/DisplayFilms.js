@@ -24,7 +24,7 @@ class DisplayFilms extends Component {
         ))
         return (
             <div>
-                <h1>CreateFilms</h1>
+                <h1>DisplayFilms</h1>
                 {films}
             </div>
         )
