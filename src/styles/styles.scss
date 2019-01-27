@@ -1,0 +1,47 @@
+//variables
+$active-color: #fff;
+$inactive-color: #f2f5f9;
+
+$primary-border-color: #dee1e5;
+
+//button
+button.btn.btn-primary {
+    background-color: #60BAD5!important;
+    color: #fff!important;
+    border: #60BAD5 1px solid !important
+}
+
+//styling for the react-spinners
+.css-m8a9i5-wrapper {
+    position: absolute!important;
+    top: 50%!important;
+    left: 50%!important;
+    z-index:1000;
+    display: block;
+    margin: 0 auto;
+}
+
+.css-m8a9i5-wrapper > div {
+    background-color: #60BAD5;
+}
+
+//styling for the react-date-picker
+.react-date-picker, .react-date-picker__wrapper {
+    width: 100%!important;
+}
+
+.react-date-picker__wrapper {
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

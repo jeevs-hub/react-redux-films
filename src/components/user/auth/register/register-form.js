@@ -1,0 +1,128 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import DatePicker from 'react-date-picker';
+import { FadeLoader } from 'react-spinners';
+
+import constants from '../../../../utils/constants';
+import { register } from '../../../../redux/actions/user-actions';
+import './register-form.scss';
+
+class RegisterForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: {
+                email: '',
+                password: '',
+                passwordConfirmation: '',
+                firstName: '',
+                lastName: '',
+                dateOfBirth: new Date('06/30/1993')
+            },
+            loading: false,
+            errors: {}
+        }
+    }
+
+    onChange = (e) => {
+        this.setState({ data: { ...this.state.data, [e.target.name]: e.target.value } })
+    }
+
+    validate = (data) => {
+        const errors = {};
+        const { PASSWORD_VALIDATION, EMAIL_VALIDATION } = constants;
+        
+        if (!EMAIL_VALIDATION.test(data.email)) errors.email = "invalid email";
+        if (!PASSWORD_VALIDATION.test(data.password)) errors.password = "password must be at least 6 characters and must contain: a capital letter, a lowercase letter and a number";
+        if(data.password !== data.passwordConfirmation) errors.password = errors.passwordConfirmation = "passwords must match";
+        if(!data.firstName) errors.firstName = "Must enter a first name";
+        if(!data.lastName) errors.lastName = "Must enter a last name";
+        if(!data.dateOfBirth) errors.dateOfBirth = "Must enter a date of Birth";
+
+        return errors;
+    };
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        const errors = this.validate(this.state.data);
+        this.setState({ errors });
+        if (Object.keys(errors).length === 0) {
+            const { data } = this.state;
+            const user = {
+                email: data.email,
+                password: data.password,
+                passwordConfirmation: data.passwordConfirmation, 
+                dateOfBirth: data.dateOfBirth.toISOString(),
+                firstName: data.firstName, 
+                lastName: data.lastName
+            }
+
+            this.setState({...this.state, loading: true});
+
+            this.props.register(user)
+                .then(() => this.props.userAuthenticated())
+                .catch(err => {
+                    console.error("errors when trying to login ", err);
+                    if(err.status === 400) {
+                        this.props.displayErrorMessage(err.message);
+                    } else {
+                        this.props.displayErrorMessage("There was an error registering in. Please try again");                      
+                    }
+                })
+                .finally(() => this.isMounted ? this.setState({ ...this.state, loading: false }) : null)
+        }
+    }
+
+    render() {
+        const { data, errors } = this.state;
+        return (
+            <div className="form-container">
+                <div className='sweet-loading'>
+                    <FadeLoader sizeUnit={"px"} size={25} color={'#123abc'} loading={this.state.loading} />
+                </div>
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group col-sm-12">
+                        <div className="form-group row">
+                            <div className="col-sm-6">
+                                <input name="firstName" className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} type="text" placeholder="First Name" onChange={this.onChange} value={data.firstName} />
+                            </div>
+                            <div className="col-sm-6">
+                                <input name="lastName" className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} type="text" placeholder="Last Name" onChange={this.onChange} value={data.lastName} />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <div className="col-sm-6">
+                                <input name="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} placeholder="Email" type="text" onChange={this.onChange} value={data.email} />
+                            </div>
+                            <div className="col-sm-6">
+                                <DatePicker name="dateOfBirth" onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
+                                {/* <input name="dateOfBirth" className={`form-control ${errors.dateOfBirth ? 'is-invalid' : ''}`} placeholder="Date of Birth" type="text" onChange={this.onChange} value={data.dateOfBirth} /> */}
+                            </div>
+                        </div>
+                            
+                        <div className="form-group row last-form-row">
+                            <div className="col-sm-6">
+                                <input name="password" placeholder="Password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} type="password" onChange={this.onChange} value={data.password} />
+                            </div>
+                            <div className="col-sm-6">
+                                <input name="passwordConfirmation" placeholder="Password Confirmation" className={`form-control ${errors.passwordConfirmation ? 'is-invalid' : ''}`}type="password" onChange={this.onChange} value={data.passwordConfirmation} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary float-right">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        )
+    }
+};
+
+RegisterForm.propTypes = {
+    register: PropTypes.func.isRequired,
+    userAuthenticated: PropTypes.func.isRequired,
+    displayErrorMessage: PropTypes.func.isRequired
+}
+
+export default connect(null, { register })(RegisterForm);

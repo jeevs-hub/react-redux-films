@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchFilms } from '../actions/filmActions';
+import { fetchFilms } from '../redux/actions/film-actions';
 
 class DisplayFilms extends Component {
     
@@ -17,7 +17,7 @@ class DisplayFilms extends Component {
 
     render() {
         const films = this.props.films.map((film) => (
-            <div key={film.id}>
+            <div key={JSON.stringify(film)}>
                 <h3>{film.title}</h3>
                 <p>{film.body}</p>
             </div>

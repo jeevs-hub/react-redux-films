@@ -5,8 +5,19 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { LOGIN } from './redux/types/user-types';
+import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 
 import store from './store';
+
+if(localStorage.jwt) {
+    setAuthorizationHeader(localStorage.jwt);
+    store.dispatch({
+        type: LOGIN,
+        payload: localStorage.jwt
+    });
+}
 
 ReactDOM.render(
     <Provider store={store}>

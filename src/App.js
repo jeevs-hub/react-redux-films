@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import logo from './logo.svg';
 import './App.css';
-import DisplayFilms from './components/DisplayFilms';
-import CreateFilms from './components/CreateFilms';
-import LoginForm from './components/user/Login';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+import DisplayFilms from './components/display-films';
+import LandingPage from './components/user/auth/landing-page';
+import TopNavigation from './components/navigation-bar/navigation-bar';
 import UnauthorisedRoute from "./routes/UnauthorisedRoute";
 import AuthorisedRoute from "./routes/AuthorisedRoute";
-import { Route } from 'react-router-dom';
 
 const App = ({location, isAuthenticated}) => (
     <div className="App">
-      <UnauthorisedRoute location={location} path="/" exact component={LoginForm} />
+      {isAuthenticated && <TopNavigation />}
+      <ToastContainer autoClose={2000} />
+      <UnauthorisedRoute location={location} path="/" exact component={LandingPage} />
       <AuthorisedRoute location={location} path="/dashboard" exact component={DisplayFilms} />
     </div>
 )

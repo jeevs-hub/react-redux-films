@@ -1,4 +1,4 @@
-import { FETCH_FILMS, NEW_FILM } from '../actions/types';
+import { FETCH_FILMS, NEW_FILM } from '../types/film-types';
 
 const initialState = {
     films: [],
