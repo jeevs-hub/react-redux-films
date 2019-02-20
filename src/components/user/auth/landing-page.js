@@ -25,14 +25,14 @@ class LandingPage extends React.Component {
     render() {
         const { showLogin } = this.state;
         return (
-            <div className="background">
-                <div className="col-xs-12 col-sm-4 modal-container">
+            <div className="landing-page-background">
+                <div className="col-xs-12 col-sm-4 landing-page-modal-container">
                     <ul className="nav nav-tabs nav-fill">
                         <li className="nav-item">
-                            <span className={`nav-link ${showLogin ? 'active-btn' : 'inactive-btn'}`} onClick={() => this.onChange(true)}>Login</span>
+                            <span className={`nav-link ${showLogin ? 'landing-page-active-btn' : 'landing-page-inactive-btn'}`} onClick={() => this.onChange(true)}>Login</span>
                         </li>
                         <li className="nav-item">
-                            <span className={`nav-link ${!showLogin ? 'active-btn' : 'inactive-btn'}`} onClick={() => this.onChange(false)}>Register</span>
+                            <span className={`nav-link ${!showLogin ? 'landing-page-active-btn' : 'landing-page-inactive-btn'}`} onClick={() => this.onChange(false)}>Register</span>
                         </li>
                     </ul>
                     {showLogin ?

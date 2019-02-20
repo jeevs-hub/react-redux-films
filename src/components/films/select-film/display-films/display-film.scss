@@ -1,0 +1,18 @@
+.display-films-film-info {
+    border: 1px solid rgba(0,0,0,.125);
+    height: 40vh;
+    display: inline-block;
+}
+
+.dispaly-films-image {
+    display: inline-block;
+    height: 40vh;
+}
+
+.dispaly-films-image>img {
+    height: 100%;
+}
+
+.display-films-container {
+    display: flex;
+}

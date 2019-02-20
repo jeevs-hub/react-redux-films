@@ -1,6 +1,6 @@
 @import '../../../styles/styles';
 
-.modal-container {
+.landing-page-modal-container {
     opacity: 0.99;
     background-color: $active-color;
     border: 1px solid $primary-border-color;
@@ -18,20 +18,17 @@
     margin-bottom: 0px!important;
 }
 
-.active-btn {
+.landing-page-active-btn {
     background-color: $active-color!important;
 }
 
-.inactive-btn {
+.landing-page-inactive-btn {
     background-color: $inactive-color;
 } 
 
-.background {
+.landing-page-background {
     background-image: url('../../../assets/filmcollage.jpg');
-    /* background-color:red; */
-    /* Full height */
     height: 100vh; 
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

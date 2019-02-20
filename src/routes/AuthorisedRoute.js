@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-const AuthorisedRoute = ({ isAuthenticated, component: Component, ...rest }) => (
+const AuthorisedRoute = ({ isAuthenticated, component: Component, ...rest }) => (console.log("test redux ", rest),
   <Route
     {...rest}
     render={props =>

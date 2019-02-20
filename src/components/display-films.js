@@ -4,28 +4,41 @@ import { connect } from 'react-redux';
 import { fetchFilms } from '../redux/actions/film-actions';
 
 class DisplayFilms extends Component {
-    
+
     componentWillMount() {
         this.props.fetchFilms();
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.newFilm) {
+        if (nextProps.newFilm) {
             this.props.films.unshift(nextProps.newFilm);
         }
     }
 
     render() {
-        const films = this.props.films.map((film) => (
-            <div key={JSON.stringify(film)}>
-                <h3>{film.title}</h3>
-                <p>{film.body}</p>
-            </div>
+        const films = this.props.films.map((film, index) => (
+            <tr key={index}>
+                <th scope="row">{index}</th>
+                <td>{film.title}</td>
+                <td>{film.body}</td>
+            </tr>
         ))
         return (
-            <div>
+            <div className="display-center">
                 <h1>DisplayFilms</h1>
-                {films}
+                <table className="table">
+                    <thead className="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">1</th>
+                            <th scope="col">2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {films}
+                    </tbody>
+                </table>
+
             </div>
         )
     }
