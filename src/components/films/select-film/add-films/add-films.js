@@ -21,19 +21,23 @@ class AddFilms extends Component {
     });
 
     handleSearch = (query) => {
-        this.setState({ isLoading: true });
-        axios.get(`https://nodejs-film-service.herokuapp.com/search?q=${encodeURI(query)}`)
+        console.log("tesetestse ", query);
+        if(query) {
+            this.setState({ isLoading: true });
+            axios.get(`https://nodejs-film-service.herokuapp.com/search?q=${encodeURI(query)}`)
             .then(options => this.setState({ ...this.state, options: options.data }))
             .catch((err) => {
                 console.error("Error getting films ", err);
                 this.displayErrorMessage("Error getting films");
             })
             .finally(this.setState({ ...this.state, isLoading: false }))
+
+        }
     }
 
     render() {
         return (
-            <div className="col-xs-10 col-sm-10 add-film-container">
+            <div className="col-xs-12 col-sm-12 add-film-container">
                     <AsyncTypeahead
                         {...this.state}
                         labelKey="label"

@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SelectFilm from "./select-film/select-film";
 import AdditionalDetailsPage from "./addtional-details/addtional-details";
-// import './select-film.scss';
-
-const Sandwiches = () => <h2>Sandwiches</h2>;
-const Sandwiches1 = () => <h2>isfbios</h2>;
+import { saveFilm } from '../../redux/actions/film-actions';
+import './create-film.scss';
 
 class CreateFilm extends React.Component {
     constructor(props) {
@@ -15,42 +13,72 @@ class CreateFilm extends React.Component {
             currentPage: 0,
             routes: [
                 {
-                    label: "/select",
+                    label: "Select",
                     component: <SelectFilm></SelectFilm>
                 },
                 {
-                    label: "",
-                    component: <AdditionalDetailsPage></AdditionalDetailsPage>
-                },
-                {
-                    label: "Sandwhiches 1",
-                    component: <Sandwiches1></Sandwiches1>
+                    label: "Additional Details",
+                    component: <AdditionalDetailsPage updateFilmData={this.filmDataUpdated}></AdditionalDetailsPage>
                 }
             ],
+            data: {
+                additionalNotes: '',
+                watchByDate: new Date()
+            },
             isLoading: false
         }
     }
-    
+
+    filmDataUpdated = (newData) => {
+        this.setState({ data: newData.data })
+    };
+
     canGoNextPage = () => {
-        switch(this.state.currentPage) {
+        switch (this.state.currentPage) {
             case 0:
-                return !this.props.filmInfo;
+                return !!this.props.filmInfo.name;
             default:
-                return !false;
+                return true;
         }
+    }
+
+    saveFilm = () => {
+        const { filmInfo } = this.props;
+        const film = {
+            film_api_id: filmInfo.film_api_key,
+            watchByDate: new Date(this.state.data.watchByDate).toISOString().split('T')[0],
+            data: {
+                name: filmInfo.name,
+                rating: filmInfo.rating,
+                summary: filmInfo.summary,
+                runtime: filmInfo.runtime,
+                releaseDate: filmInfo.date,
+                genres: filmInfo.genres,
+                additionalNotes: this.state.data.additionalNotes,
+                photoUrl: filmInfo.imgUrl
+            }
+        };
+        this.props.saveFilm(film)
+        .then(() => this.props.history.push('/dashboard'));
     }
 
     render() {
         const { currentPage, routes } = this.state;
         return (
-            
-            <div>
+            <div className="component-container col-sm-8">
                 <div className="menu-items">
                 </div>
+                <div className="route-component">
                 {routes[currentPage].component}
+                </div>
                 <div className="footer">
-                    <button disabled={this.canGoNextPage()} onClick={() => this.setState({...this.state, currentPage: currentPage + 1})}>
-                        Next
+                    <button className="btn btn-primary float-left" disabled={currentPage === 0} onClick={() => this.setState({ ...this.state, currentPage: currentPage - 1 })}>
+                        Back
+                    </button>
+                    <button className="btn btn-primary float-right" disabled={!this.canGoNextPage()} onClick={() => 
+                        currentPage === 0 ? this.setState({ ...this.state, currentPage: currentPage + 1 }) :
+                        this.saveFilm() }>
+                        {currentPage === 0 ? 'Next' : 'Save'}
                     </button>
                 </div>
             </div>
@@ -67,14 +95,15 @@ CreateFilm.propTypes = {
         push: PropTypes.func.isRequired
     }).isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-    filmInfo: PropTypes.bool.isRequired
+    filmInfo: PropTypes.any.isRequired,
+    saveFilm: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
     return {
         isAuthenticated: !!state.user.token,
-        filmInfo: !!state.films.filmInfo.name
+        filmInfo: state.films.filmInfo
     }
 }
 
-export default connect(mapStateToProps, {})(CreateFilm);
+export default connect(mapStateToProps, { saveFilm })(CreateFilm);

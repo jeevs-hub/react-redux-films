@@ -11,13 +11,10 @@ const TopNavigation = ({ user, logout }) => (
                     <a className="nav-link" href="/dashboard">Home <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="/addFilm/selectFilm">Add Films</a>
-                </li>
-                <li className="nav-item">
                     <a className="nav-link" href="/addFilm">Add Films</a>
                 </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/select">Select</a>
+                <li className="nav-item log-out">
+                    <a className="nav-link nav-logout" onClick={() => logout()}>Logout</a>
                 </li>
             </ul>
         </div>

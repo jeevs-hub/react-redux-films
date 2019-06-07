@@ -1,0 +1,22 @@
+@import '../../../styles/styles';
+
+.add-cmp-body {
+    margin-top: 25px;
+}
+
+.add-cmp-body > .container-add-info {
+    border: $primary-border-color solid 1px;
+    border-radius: 10px;
+    display: inline-flex;
+    height: 15vh;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.container-add-info > .row {
+    margin-left: 12%;
+}
+
+.add-details-large-details {
+    margin-left: -5%!important;
+}

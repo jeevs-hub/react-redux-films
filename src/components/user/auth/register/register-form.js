@@ -63,14 +63,14 @@ class RegisterForm extends React.Component {
             this.props.register(user)
                 .then(() => this.props.userAuthenticated())
                 .catch(err => {
-                    console.error("errors when trying to login ", err);
-                    if(err.status === 400) {
-                        this.props.displayErrorMessage(err.message);
+                    console.error("errors when trying to login ", err.response.data.error.message);
+                    if(err.response.data.error.status === 400) {
+                        this.props.displayErrorMessage(err.response.data.error.message);
                     } else {
                         this.props.displayErrorMessage("There was an error registering in. Please try again");                      
                     }
                 })
-                .finally(() => this.isMounted ? this.setState({ ...this.state, loading: false }) : null)
+                .finally(() => this.setState({ ...this.state, loading: false }))
         }
     }
 

@@ -25,13 +25,15 @@ class SelectFilmPage extends React.Component {
 
     filmSelected = (selectedFilmId) => {
         console.log("film selected ", selectedFilmId);
-        this.setState({ ...this.state, selectedFilmId });
-        this.props.getFilmInfo(selectedFilmId)
+        if(selectedFilmId) {
+            this.setState({ ...this.state, selectedFilmId });
+            this.props.getFilmInfo(selectedFilmId)
             .catch(err => {
                 console.error("Error getting film information ", err);
                 this.displayErrorMessage("Error getting film information. Please try again");
             })
             .finally(() => this.setState({ ...this.state, loading: false }))
+        }
 
     }
 
@@ -41,7 +43,7 @@ class SelectFilmPage extends React.Component {
         const { selectedFilmId } = this.state;
         console.log("the select film ", selectedFilmId)
         return (
-            <div className="col-xs-12 col-sm-10 select-film-container">
+            <div className="col-xs-12 col-sm-12">
                 <div className="row">
                     <AddFilms filmSelected={this.filmSelected} />
                 </div>

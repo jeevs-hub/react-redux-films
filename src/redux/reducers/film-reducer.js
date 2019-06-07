@@ -11,7 +11,7 @@ export default function (state = initialState, action) {
         case FETCH_FILMS:
         return {
             ...state,
-            films: action.payload
+            films: action.payload.data
         }
         case NEW_FILM:
         return {
@@ -19,10 +19,13 @@ export default function (state = initialState, action) {
             film: action.payload
         }
         case FILM_INFO:
+        console.log("the film info ", action.payload)
             return {
                 ...state,
                 filmInfo: action.payload
             }
+        // case FILM_CREATED:
+        //     return
         default:
             return state;
     }

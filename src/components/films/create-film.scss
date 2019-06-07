@@ -1,0 +1,18 @@
+@import '../../styles/styles';
+
+.component-container {
+    margin: 0 auto;
+}
+
+.route-component {
+    height: 70vh;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: $primary-border-color solid 1px;
+    border-radius: 10px;
+}
+
+.footer {
+    margin-top: 5px;
+}
