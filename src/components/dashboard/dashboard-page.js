@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DisplayFilms from '../display-films';
+import DisplayFilms from './display-films/display-films';
 import { toast } from 'react-toastify';
 import './dashboard-page.scss';
 
@@ -23,7 +23,7 @@ class DashboardPage extends React.Component {
         return (
             <div className="">
                 <div className="col-xs-12 col-sm-12">
-                    <DisplayFilms />
+                    <DisplayFilms history={this.props.history}/>
                 </div>
             </div>
         )

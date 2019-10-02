@@ -5,16 +5,21 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 
 import AddFilms from './add-films/add-films';
-import DisplayFilm from './display-films/display-film';
-import { getFilmInfo } from '../../../redux/actions/film-actions';
+import DisplayFilmDetails from './display-film-details/display-film-details';
+import { getFilmInfo, filmSelected } from '../../../redux/actions/film-actions';
 import './select-film.scss';
 
 class SelectFilmPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedFilmId: 0
+            filmInfo: this.props.filmInfo,
+            isEdit: this.props.isEdit
         }
+    }
+
+    componentWillReceiveProps(nextProps) { 
+        this.setState({...this.state, filmInfo: nextProps.filmInfo})
     }
 
     userAuthenticated = () => this.props.history.push('/dashboard');
@@ -24,9 +29,7 @@ class SelectFilmPage extends React.Component {
     });
 
     filmSelected = (selectedFilmId) => {
-        console.log("film selected ", selectedFilmId);
         if(selectedFilmId) {
-            this.setState({ ...this.state, selectedFilmId });
             this.props.getFilmInfo(selectedFilmId)
             .catch(err => {
                 console.error("Error getting film information ", err);
@@ -40,16 +43,15 @@ class SelectFilmPage extends React.Component {
 
 
     render() {
-        const { selectedFilmId } = this.state;
-        console.log("the select film ", selectedFilmId)
+        const { filmInfo, isEdit } = this.state;
         return (
             <div className="col-xs-12 col-sm-12">
-                <div className="row">
+                {!isEdit && <div className="row">
                     <AddFilms filmSelected={this.filmSelected} />
-                </div>
-                {selectedFilmId > 0 &&
+                </div>}
+                {filmInfo.name &&
                     <div className="select-film-display">
-                        <DisplayFilm selectedFilmId={selectedFilmId} />
+                        <DisplayFilmDetails  />
                     </div>
                 }
             </div>
@@ -64,7 +66,14 @@ SelectFilmPage.propTypes = {
     history: PropTypes.shape({
         push: PropTypes.func.isRequired
     }).isRequired,
-    getFilmInfo: PropTypes.func.isRequired
+    getFilmInfo: PropTypes.func.isRequired,
+    filmSelected: PropTypes.func.isRequired,
+    filmInfo: PropTypes.object.isRequired,
 }
 
-export default withRouter(connect(null, { getFilmInfo })(SelectFilmPage));
+const mapStateToProps = (state) => ({
+    filmInfo: state.films.filmInfo,
+    isEdit: state.films.isEdit
+})
+
+export default withRouter(connect(mapStateToProps, { getFilmInfo, filmSelected })(SelectFilmPage));

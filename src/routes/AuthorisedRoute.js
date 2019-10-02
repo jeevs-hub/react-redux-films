@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-const AuthorisedRoute = ({ isAuthenticated, component: Component, ...rest }) => (console.log("test redux ", rest),
+const AuthorisedRoute = ({ isAuthenticated, component: Component, ...rest }) =>
   <Route
     {...rest}
-    render={props =>
-      isAuthenticated ? <Component {...props} /> : <Redirect to="/" />}
+    render={props => {
+      return isAuthenticated ? <Component {...props} {...rest} /> : <Redirect to="/" />
+    }}
   />
-);
 
 AuthorisedRoute.propTypes = {
   component: PropTypes.func.isRequired,

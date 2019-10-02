@@ -1,9 +1,10 @@
-import { FETCH_FILMS, NEW_FILM, FILM_INFO } from '../types/film-types';
+import { FETCH_FILMS, NEW_FILM, FILM_INFO, FILM_SELECTED } from '../types/film-types';
 
 const initialState = {
     films: [],
     film: {},
-    filmInfo: {}
+    filmInfo: {},
+    count: 0
 }
 
 export default function (state = initialState, action) {
@@ -11,7 +12,8 @@ export default function (state = initialState, action) {
         case FETCH_FILMS:
         return {
             ...state,
-            films: action.payload.data
+            films: action.payload.films,
+            count: action.payload.count
         }
         case NEW_FILM:
         return {
@@ -19,13 +21,16 @@ export default function (state = initialState, action) {
             film: action.payload
         }
         case FILM_INFO:
-        console.log("the film info ", action.payload)
             return {
                 ...state,
-                filmInfo: action.payload
+                filmInfo: action.payload.filmData,
+                isEdit: action.payload.isEdit
             }
-        // case FILM_CREATED:
-        //     return
+        case FILM_SELECTED:
+            return {
+                ...state,
+                filmData: action.payload
+            }
         default:
             return state;
     }

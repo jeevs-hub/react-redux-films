@@ -18,7 +18,7 @@ class RegisterForm extends React.Component {
                 passwordConfirmation: '',
                 firstName: '',
                 lastName: '',
-                dateOfBirth: new Date('06/30/1993')
+                dateOfBirth: undefined
             },
             loading: false,
             errors: {}
@@ -34,7 +34,7 @@ class RegisterForm extends React.Component {
         const { PASSWORD_VALIDATION, EMAIL_VALIDATION } = constants;
         
         if (!EMAIL_VALIDATION.test(data.email)) errors.email = "invalid email";
-        if (!PASSWORD_VALIDATION.test(data.password)) errors.password = "password must be at least 6 characters and must contain: a capital letter, a lowercase letter and a number";
+        if (!PASSWORD_VALIDATION.test(data.password)) errors.password = errors.passwordConfirmation = "password must be at least 6 characters and must contain: a capital letter, a lowercase letter and a number";
         if(data.password !== data.passwordConfirmation) errors.password = errors.passwordConfirmation = "passwords must match";
         if(!data.firstName) errors.firstName = "Must enter a first name";
         if(!data.lastName) errors.lastName = "Must enter a last name";
@@ -96,8 +96,8 @@ class RegisterForm extends React.Component {
                                 <input name="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} placeholder="Email" type="text" onChange={this.onChange} value={data.email} />
                             </div>
                             <div className="col-sm-6">
-                                <DatePicker name="dateOfBirth" onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
-                                {/* <input name="dateOfBirth" className={`form-control ${errors.dateOfBirth ? 'is-invalid' : ''}`} placeholder="Date of Birth" type="text" onChange={this.onChange} value={data.dateOfBirth} /> */}
+                                <DatePicker name="dateOfBirth" className={`${errors.dateOfBirth ? 'dob-is-invalid' : ''}`} onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
+                                {/* <input name="dateOfBirth" className={`form-control ${errors.dateOfBirth ? 'dob-is-invalid' : ''}`} placeholder="Date of Birth" type="text" onChange={this.onChange} value={data.dateOfBirth} /> */}
                             </div>
                         </div>
                             

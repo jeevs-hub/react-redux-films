@@ -21,7 +21,6 @@ class AddFilms extends Component {
     });
 
     handleSearch = (query) => {
-        console.log("tesetestse ", query);
         if(query) {
             this.setState({ isLoading: true });
             axios.get(`https://nodejs-film-service.herokuapp.com/search?q=${encodeURI(query)}`)

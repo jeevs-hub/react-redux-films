@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
                         this.props.displayErrorMessage("There was an error logging in. Please try again");
                     }
                 })
-                .finally(() => this.isMounted ? this.setState({ ...this.state, loading: false }) : null)
+                .finally(() => this.setState({ ...this.state, loading: false }))
 
 
         }

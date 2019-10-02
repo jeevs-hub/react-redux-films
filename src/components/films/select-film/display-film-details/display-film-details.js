@@ -2,26 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import './display-film.scss';
+import './display-film-details.scss';
 
-class DisplayFilm extends Component {
+class DisplayFilmDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             options: [],
-            isLoading: false
+            isLoading: false,
+            filmInfo: this.props.filmInfo
         }
     }
 
-    componentWillReceiveProps(nextProps) { }
-
-
-    onChange = (e) => {
-        console.log("e ", this.props);
+    componentWillMount() {
     }
-
+    
+    componentWillReceiveProps(nextProps) { 
+        this.setState({...this.state, filmInfo: nextProps.filmInfo})
+    }
+    
     render() {
-        const { filmInfo } = this.props;
+        const { filmInfo } = this.state;
         const genres = filmInfo && filmInfo.genres ? filmInfo.genres.map((genre, index) => (<span key={index}>{genre} </span>)) : null;
         const filmImageUrl = filmInfo && filmInfo.imgUrl ? `https://image.tmdb.org/t/p/w500${filmInfo.imgUrl}` : null;
        
@@ -42,7 +43,7 @@ class DisplayFilm extends Component {
     }
 };
 
-DisplayFilm.propTypes = {
+DisplayFilmDetails.propTypes = {
     filmInfo: PropTypes.object.isRequired
 }
 
@@ -50,4 +51,4 @@ const mapStateToProps = (state) => ({
     filmInfo: state.films.filmInfo
 })
 
-export default connect(mapStateToProps, null)(DisplayFilm);
+export default connect(mapStateToProps, null)(DisplayFilmDetails);

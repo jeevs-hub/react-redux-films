@@ -1,19 +1,20 @@
-import { FETCH_FILMS, NEW_FILM, FILM_INFO, FILM_CREATED } from '../types/film-types';
+import { FETCH_FILMS, NEW_FILM, FILM_INFO, FILM_CREATED, FILM_SELECTED  } from '../types/film-types';
 import axios from 'axios';
 const url = `https://nodejs-film-service.herokuapp.com/`;
 
-export const fetchFilms = () => (dispatch) =>
-    axios.get(url)
+export const fetchFilms = (offset, filter, orderBy, asc) => (dispatch) =>
+    axios.get(`${url}?offset=${offset}&limit=${10}&filter=${filter}&order=${orderBy}&orderAsc=${asc}`)
+        .then((data) => data.data)
         .then((films) => dispatch({
             type: FETCH_FILMS,
-            payload: films
+            payload: {films: films.data, count: films.count}
         }));
 
 export const getFilmInfo = (filmId) => (dispatch) =>
     axios.get(`${url}search/${filmId}`)
         .then((data) => dispatch({
             type: FILM_INFO,
-            payload: data.data
+            payload: {filmData: data.data, isEdit: false}
         }))
 
 export const saveFilm = (filmData) => (dispatch) =>
@@ -21,3 +22,12 @@ export const saveFilm = (filmData) => (dispatch) =>
         .then((res) => dispatch({
             type: FILM_CREATED
         }))
+
+export const filmSelected = (filmData, isEdit = false) => (dispatch) =>
+    dispatch({
+        type: FILM_INFO,
+        payload: {filmData, isEdit }
+    })
+
+export const updateFilm = (filmData) => (dispatch) =>
+    axios.put(`${url}updateFilm`, filmData)

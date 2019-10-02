@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 import DashboardPage from './components/dashboard/dashboard-page';
-import SelectFilm from './components/films/select-film/select-film';
 import CreateFilm from './components/films/create-film';
 import LandingPage from './components/user/auth/landing-page';
 import TopNavigation from './components/navigation-bar/navigation-bar';
@@ -20,6 +19,7 @@ const App = ({location, isAuthenticated}) => (
       <UnauthorisedRoute location={location} path="/" exact component={LandingPage} />
       <AuthorisedRoute location={location} path="/dashboard" exact component={DashboardPage} />
       <AuthorisedRoute location={location} path="/addFilm" exact component={CreateFilm} />
+      <AuthorisedRoute location={location} path="/editFilm" exact component={CreateFilm} />
     </div>
 )
 

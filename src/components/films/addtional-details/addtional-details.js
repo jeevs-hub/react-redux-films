@@ -11,8 +11,8 @@ class AdditionalDetailsPage extends React.Component {
         this.state = {
             filmInfo: this.props.filmInfo,
             data: {
-                additionalNotes: '',
-                watchByDate: new Date()
+                additionalNotes: this.props.filmInfo.additionalNotes ? this.props.filmInfo.additionalNotes : '',
+                watchByDate: this.props.filmInfo.watchByDate ? new Date(this.props.filmInfo.watchByDate) : new Date()
             }
         }
     }
@@ -31,7 +31,7 @@ class AdditionalDetailsPage extends React.Component {
     render() {
         const { filmInfo, data } = this.state;
         const genresOptions = filmInfo.genres.map((g, index) => <option key={index}>{g}</option>)
-        console.log("the select film ", filmInfo.rating / 2)
+        console.log(" test ", data.watchByDate);
         return (
             <div className="col-xs-12 col-sm-12">
                 <h1>Additional Information for {filmInfo.name}</h1>
@@ -103,7 +103,7 @@ class AdditionalDetailsPage extends React.Component {
 
 AdditionalDetailsPage.propTypes = {
     filmInfo: PropTypes.object.isRequired,
-    updateFilmData: PropTypes.func.isRequired
+    updateFilmData: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
