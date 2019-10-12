@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
@@ -12,15 +12,15 @@ import TopNavigation from './components/navigation-bar/navigation-bar';
 import UnauthorisedRoute from "./routes/UnauthorisedRoute";
 import AuthorisedRoute from "./routes/AuthorisedRoute";
 
-const App = ({location, isAuthenticated}) => (
-    <div className="App">
-      {isAuthenticated && <TopNavigation />}
-      <ToastContainer autoClose={2000} />
-      <UnauthorisedRoute location={location} path="/" exact component={LandingPage} />
-      <AuthorisedRoute location={location} path="/dashboard" exact component={DashboardPage} />
-      <AuthorisedRoute location={location} path="/addFilm" exact component={CreateFilm} />
-      <AuthorisedRoute location={location} path="/editFilm" exact component={CreateFilm} />
-    </div>
+const App = ({ location, isAuthenticated }) => (
+  <div className="App">
+    {isAuthenticated && <TopNavigation />}
+    <ToastContainer autoClose={2000} />
+    <UnauthorisedRoute location={location} path="/" exact component={LandingPage} />
+    <AuthorisedRoute location={location} path="/dashboard" exact component={DashboardPage} />
+    <AuthorisedRoute location={location} path="/addFilm" exact component={CreateFilm} />
+    <AuthorisedRoute location={location} path="/editFilm" exact component={CreateFilm} />
+  </div>
 )
 
 App.propTypes = {

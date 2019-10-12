@@ -1,0 +1,86 @@
+.landing-page-modal-container {
+    opacity: 0.99;
+    background-color: #222222;
+    border: 1px solid #dee1e5;
+    border-radius: 5px;
+    position: fixed!important;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.register-component{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: 0px!important;
+}
+
+.landing-page-active-btn {
+    background-color: #484848;
+}
+
+.landing-page-inactive-btn {
+    background-color: #222222!important;
+} 
+
+.landing-page-background {
+    background-image: url('../../../assets/filmcollage.jpg');
+    height: 100vh; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.landing-page-modal-container input.forminput{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #fff;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;  
+  }
+  
+  .landing-page-modal-container input.forminput:focus{
+    width: 280px;
+    -webkit-animation: 9s colorChange alternate;
+    transition height 0.3s, width 0.3s 0.1s
+    input:focus ~ .border
+    
+  }
+
+  @-webkit-keyframes colorChange {
+    0%   { border-color: #fff;  }
+    5%  { border-color: #fff; }
+    10%  { border-color: #a8884a;}
+    15%  { border-color: #a8884a; }
+    20% { border-color: #fff;}
+     25%   { border-color: #fff;  }
+    30%  { border-color: #a8884a; }
+    35%  { border-color: #a8884a;}
+    40%  { border-color: #fff; }
+    45%  { border-color: #fff;}
+    50%  { border-color: #a8884a;  }
+    55%  { border-color: #a8884a; }
+    60%  { border-color: #fff;}
+    65%  { border-color: #fff; }
+    70% { border-color: #a8884a;}
+    75% { border-color: #a8884a;}
+    80% { border-color: #fff;}
+    85% { border-color: #fff;}
+    90% { border-color: #a8884a;}
+    95% { border-color: #a8884a;}
+    100% { border-color: #fff;}
+  }

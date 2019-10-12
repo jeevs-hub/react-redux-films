@@ -2,21 +2,40 @@
 
 .add-cmp-body {
     margin-top: 25px;
+    text-align: center;
+}
+
+.container-add-info {
+    margin-top: 25px; 
 }
 
 .add-cmp-body > .container-add-info {
     border: $primary-border-color solid 1px;
     border-radius: 10px;
     display: inline-flex;
-    height: 15vh;
+    height: 10vh;
     margin-left: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: black;
 }
 
 .container-add-info > .row {
-    margin-left: 12%;
+    margin-left: 16%;
+}
+
+.large-container-add-info {
+    height: 15vh!important;
 }
 
 .add-details-large-details {
-    margin-left: -5%!important;
+    margin-left: 0%!important;
+}
+
+.details-box {
+    background-color: black
+}
+
+.select-field { 
+    height: 40px!important;
 }

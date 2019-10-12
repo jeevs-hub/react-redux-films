@@ -1,0 +1,22 @@
+@import '../../../../styles/styles.scss';
+
+.form-container {
+    margin-top: 10px;
+}
+
+.login-form-footer {
+    margin-top: 35px;
+}
+  
+.btn-login {
+    /* border: #fff 2px solid !important; */
+    border: #fff 1px solid !important;
+    color: #fff!important;
+  }
+  
+  .btn-login:hover{
+    border: #a8884a 2px solid !important;
+    background: #a8884a;
+  }
+  
+  

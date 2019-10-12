@@ -1,3 +1,48 @@
-.nav-logout {
-    float: right;
+@import "../../styles/styles.scss";
+
+.btn-nav {
+  z-index: 1000000;
+  color:  $base-color!important;
+}
+
+.btn-hover {
+  border: 1px solid $base-color;
+  background: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: "montserrat";
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  color: $theme-color !important;
+}
+
+.btn-hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  // background: #fff;
+  background: $base-color;
+  z-index: -1;
+  transition: 0.8s;
+}
+
+.btn::before {
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+
+.btn:hover::before {
+  height: 180%;
+}
+
+.logout {
+  float: right;
 }

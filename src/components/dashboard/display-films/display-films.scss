@@ -1,5 +1,14 @@
+@import '../../../styles/styles.scss';
+
+
 .table-header {
     cursor: pointer;
+    background-color: #212529;
+    border-color: #32383e;
+}
+
+.table-font {
+    color: #212529;
 }
 
 .ReactModal__Content {
@@ -15,9 +24,9 @@
     margin-left: 25%;
 }
 
-.film-modal-title {
-    text-align: center;
-}
+// .film-modal-title {
+//     // text-align: center;
+// }
 
 .rating-modal {
     margin-left: 10px;
@@ -29,4 +38,44 @@
 
 .footer-center {
     margin-left: 45%;
+}
+
+.page-btn {
+    background-color: $theme-color!important;
+}
+
+.page-btn.active {
+    background-color: $base-color!important;
+}
+
+.page-btn > a {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    border: 1px solid #dee2e6;
+    color: $base-color!important;
+}
+
+.page-btn.active > a {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    border: 1px solid #dee2e6;
+    color: $theme-color!important;
+}
+
+.search-container {
+    display:flex;
+}
+
+.search-container > input, .search-container > div {
+    display:inline;
+}
+
+.search-container > div {
+    margin-top: 8px;
 }

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import LoginForm from './login/login-form';
 import RegisterForm from './register/register-form';
 import { toast } from 'react-toastify';
-
-import './landing-page.scss';
+import './landing-page.css';
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -17,7 +16,7 @@ class LandingPage extends React.Component {
     onChange = (e) => this.setState({ showLogin: e });
 
     userAuthenticated = () => this.props.history.push('/dashboard');
-    
+
     displayErrorMessage = (msg) => toast.error(msg, {
         position: toast.POSITION.TOP_CENTER
     });
@@ -26,7 +25,7 @@ class LandingPage extends React.Component {
         const { showLogin } = this.state;
         return (
             <div className="landing-page-background">
-                <div className="col-xs-12 col-sm-4 landing-page-modal-container">
+                <div className={`col-xs-12 col-sm-4 landing-page-modal-container ${!showLogin && `register-component`}`}>
                     <ul className="nav nav-tabs nav-fill">
                         <li className="nav-item">
                             <span className={`nav-link ${showLogin ? 'landing-page-active-btn' : 'landing-page-inactive-btn'}`} onClick={() => this.onChange(true)}>Login</span>
@@ -35,9 +34,11 @@ class LandingPage extends React.Component {
                             <span className={`nav-link ${!showLogin ? 'landing-page-active-btn' : 'landing-page-inactive-btn'}`} onClick={() => this.onChange(false)}>Register</span>
                         </li>
                     </ul>
-                    {showLogin ?
-                        <LoginForm userAuthenticated={this.userAuthenticated} displayErrorMessage={this.displayErrorMessage} history={this.props.history} /> :
-                        <RegisterForm userAuthenticated={this.userAuthenticated} displayErrorMessage={this.displayErrorMessage} history={this.props.history} />}
+                    <div className="components">
+                        {showLogin ?
+                            <LoginForm userAuthenticated={this.userAuthenticated} displayErrorMessage={this.displayErrorMessage} history={this.props.history} /> :
+                            <RegisterForm userAuthenticated={this.userAuthenticated} displayErrorMessage={this.displayErrorMessage} history={this.props.history} />}
+                    </div>
                 </div>
             </div>
         )

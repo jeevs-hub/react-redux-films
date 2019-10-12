@@ -2,10 +2,26 @@
 
 .component-container {
     margin: 0 auto;
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+
+}
+
+.create-film-container {
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.back-arrow-container {
+    padding-right:0px!important;
+}
+
+.next-arrow-container {
+    padding-left:0px!important;    
 }
 
 .route-component {
-    height: 70vh;
+    height: 75vh;
     background-color: #fff;
     margin: 0 auto;
     margin-top: 20px;
@@ -15,4 +31,20 @@
 
 .footer {
     margin-top: 5px;
+}
+
+.previous-next-btns {
+    margin-top: 35vh;
+}
+
+.previous-next-btns.disabled-cursor-btns{
+    cursor: not-allowed;
+}
+
+.previous {
+    float:right;
+}
+
+.next {
+    float:left;
 }

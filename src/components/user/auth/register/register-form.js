@@ -33,9 +33,9 @@ class RegisterForm extends React.Component {
         const errors = {};
         const { PASSWORD_VALIDATION, EMAIL_VALIDATION } = constants;
         
-        if (!EMAIL_VALIDATION.test(data.email)) errors.email = "invalid email";
-        if (!PASSWORD_VALIDATION.test(data.password)) errors.password = errors.passwordConfirmation = "password must be at least 6 characters and must contain: a capital letter, a lowercase letter and a number";
-        if(data.password !== data.passwordConfirmation) errors.password = errors.passwordConfirmation = "passwords must match";
+        if (!EMAIL_VALIDATION.test(data.email)) errors.email = "Invalid email";
+        if (!PASSWORD_VALIDATION.test(data.password)) errors.password = errors.passwordConfirmation = "Password must be at least 6 characters and must contain: a capital letter, a lowercase letter and a number";
+        if(data.password !== data.passwordConfirmation) errors.password = errors.passwordConfirmation = "Passwords must match";
         if(!data.firstName) errors.firstName = "Must enter a first name";
         if(!data.lastName) errors.lastName = "Must enter a last name";
         if(!data.dateOfBirth) errors.dateOfBirth = "Must enter a date of Birth";
@@ -77,40 +77,61 @@ class RegisterForm extends React.Component {
     render() {
         const { data, errors } = this.state;
         return (
-            <div className="form-container">
+            <div className="form-container box">
                 <div className='sweet-loading'>
                     <FadeLoader sizeUnit={"px"} size={25} color={'#123abc'} loading={this.state.loading} />
                 </div>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group col-sm-12">
-                        <div className="form-group row">
-                            <div className="col-sm-6">
-                                <input name="firstName" className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} type="text" placeholder="First Name" onChange={this.onChange} value={data.firstName} />
+                        <div className=" row">
+                            <div className="col-sm-12">
+                                <input name="firstName" className={`forminput ${errors.firstName ? 'is-invalid' : ''}`} type="text" placeholder="First Name" onChange={this.onChange} value={data.firstName} />
+                                {errors.firstName &&
+                                <div className="error-field">
+                                    {errors.firstName}
+                                </div>}
                             </div>
-                            <div className="col-sm-6">
-                                <input name="lastName" className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} type="text" placeholder="Last Name" onChange={this.onChange} value={data.lastName} />
+                            <div className="col-sm-12">
+                                <input name="lastName" className={`forminput ${errors.lastName ? 'is-invalid' : ''}`} type="text" placeholder="Last Name" onChange={this.onChange} value={data.lastName} />
+                                {errors.lastName &&
+                                <div className="error-field">
+                                    {errors.lastName}
+                                </div>}
                             </div>
-                        </div>
-                        <div className="form-group row">
-                            <div className="col-sm-6">
-                                <input name="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} placeholder="Email" type="text" onChange={this.onChange} value={data.email} />
+                            <div className="col-sm-12">
+                                <input name="email" className={`forminput ${errors.email ? 'is-invalid' : ''}`} placeholder="Email" type="text" onChange={this.onChange} value={data.email} />
+                                {errors.email &&
+                                <div className="error-field">
+                                    {errors.email}
+                                </div>}
                             </div>
-                            <div className="col-sm-6">
-                                <DatePicker name="dateOfBirth" className={`${errors.dateOfBirth ? 'dob-is-invalid' : ''}`} onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
-                                {/* <input name="dateOfBirth" className={`form-control ${errors.dateOfBirth ? 'dob-is-invalid' : ''}`} placeholder="Date of Birth" type="text" onChange={this.onChange} value={data.dateOfBirth} /> */}
+                            <div className="col-sm-12 dob">
+                                <div className="col-sm-6">
+                                    Date of Birth: 
+                                </div>
+                                <div className={`col-sm-6 ${errors.dateOfBirth ? 'dob-is-invalid' : ''}`}>
+                                    <DatePicker name="dateOfBirth" onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
+                                    {errors.dateOfBirth &&
+                                    <div className="error-field">
+                                        {errors.dateOfBirth}
+                                    </div>}
+                                </div>
                             </div>
-                        </div>
-                            
-                        <div className="form-group row last-form-row">
-                            <div className="col-sm-6">
-                                <input name="password" placeholder="Password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} type="password" onChange={this.onChange} value={data.password} />
+                            <div className="col-sm-12">
+                                <input name="password" placeholder="Password" className={`forminput ${errors.password ? 'is-invalid' : ''}`} type="password" onChange={this.onChange} value={data.password} />
+                                {errors.password &&
+                                <div className="error-field">
+                                    {errors.password}
+                                </div>}
                             </div>
-                            <div className="col-sm-6">
-                                <input name="passwordConfirmation" placeholder="Password Confirmation" className={`form-control ${errors.passwordConfirmation ? 'is-invalid' : ''}`}type="password" onChange={this.onChange} value={data.passwordConfirmation} />
+                            <div className="col-sm-12">
+                                <input name="passwordConfirmation" placeholder="Password Confirmation" className={`forminput ${errors.passwordConfirmation ? 'is-invalid' : ''}`}type="password" onChange={this.onChange} value={data.passwordConfirmation} />
+                                {errors.passwordConfirmation &&
+                                <div className="error-field">
+                                    {errors.passwordConfirmation}
+                                </div>}
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <button type="submit" className="btn btn-primary float-right">Register</button>
+                        <div className="col-sm-12 reg-footer">
+                            <button type="submit" className="btn btn-register float-right">Register</button>
                         </div>
                     </div>
                 </form>

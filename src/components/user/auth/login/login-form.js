@@ -5,7 +5,7 @@ import { FadeLoader } from 'react-spinners';
 
 import constants from '../../../../utils/constants';
 import { login } from '../../../../redux/actions/user-actions';
-import './login-form.scss';
+import './login-form.css';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -64,27 +64,21 @@ class LoginForm extends React.Component {
     render() {
         const { data, errors } = this.state;
         return (
-            <div className="form-container">
+            <div className="form-container box">
                 <div className='sweet-loading'>
                     <FadeLoader sizeUnit={"px"} size={25} color={'#123abc'} loading={this.state.loading} />
                 </div>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group col-sm-12">
                         <div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Email: </label><br />
-                            <div className="col-sm-10">
-                                <input name="username" className={`form-control ${errors.username ? 'is-invalid' : ''}`} type="text" onChange={this.onChange} value={data.username} />
-                            </div>
+                              <input class="forminput" type="text" name="username" placeholder="Email" onChange={this.onChange} value={data.username}/>
                         </div>
                         <div className="form-group row">
-                            <label className="col-sm-2 col-form-label">Password: </label>
-                            <div className="col-sm-10">
-                                <input name="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} type="password" onChange={this.onChange} value={data.password} />
-                            </div>
+                            <input class="forminput"  type="password" name="password" placeholder="Password" onChange={this.onChange} value={data.password}/>
                         </div>
                         <div className="form-group login-form-footer">
                             <span className="float-left">Reset password</span>
-                            <button type="submit" className="btn btn-primary float-right">Sign In</button>
+                            <button type="submit" className="btn btn-login float-right">Sign In</button>
                         </div>
                     </div>
                 </form>

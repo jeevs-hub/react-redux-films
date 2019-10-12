@@ -5,11 +5,20 @@ $inactive-color: #f2f5f9;
 $primary-border-color: #dee1e5;
 
 $background-color: #f8f9fa;
-$theme-color: #60BAD5;
+// $theme-color: #60BAD5;
+$theme-color: #222222;
+
+$base-color: #a8884a;
+// $base-color: #3498db;
 
 .App {
     background-color: $background-color;
     height: 100vh;
+    color: $base-color;
+}
+
+h1 {
+    text-align: center;
 }
 
 .display-center {

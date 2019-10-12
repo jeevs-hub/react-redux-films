@@ -75,19 +75,19 @@ class AdditionalDetailsPage extends React.Component {
                         <div className="row">
                             <div className="col-xs-12 col-sm-12"> Genres  </div>
                             <div className="col-xs-12 col-sm-12">
-                                <select className="form-control" id="exampleFormControlSelect1">
+                                <select size={filmInfo.genres.length} className="form-control select-field">
                                     {genresOptions}
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div className="col-xs-6 col-sm-5 container-add-info">
+                    <div className="col-xs-6 col-sm-5 container-add-info large-container-add-info">
                         <div className="row add-details-large-details">
                             <div className="col-xs-12 col-sm-12"> Watch by date:  </div>
                             <div className="col-xs-12 col-sm-12"><DatePicker name="watchByDate" onChange={(e) => this.onChange({ target: { name: 'watchByDate', value: e } })} value={data.watchByDate} minDate={new Date()} /></div>
                         </div>
                     </div>
-                    <div className="col-xs-6 col-sm-5 container-add-info">
+                    <div className="col-xs-6 col-sm-5 container-add-info large-container-add-info">
                         <div className="row add-details-large-details">
                             <div className="col-xs-12 col-sm-12"> Additional Notes: </div>
                             <div className="col-xs-12 col-sm-12">

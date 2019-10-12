@@ -47,19 +47,6 @@ class DisplayFilms extends React.Component {
         const { previousSortedBy, isAsc, currentPage, filterBy } = this.state;
         let isAscending = previousSortedBy === sortBy ? !isAsc : isAsc;
         this.props.fetchFilms(currentPage * this.pageSize, filterBy, previousSortedBy, isAscending);
-
-        // let sortedData;
-        // if (isAscending) {
-        //     sortedData = data.sort((a, b) => {
-        //         return a[sortBy] > b[sortBy] ? 1 : -1;
-        //     });
-        //     isAscending = true;
-        // } else {
-        //     sortedData = data.sort((a, b) => {
-        //         return a[sortBy] < b[sortBy] ? 1 : -1;
-        //     });
-        //     isAscending = false;
-        // }
         this.setState({ ...this.state, previousSortedBy: sortBy, isAsc: isAscending });
     }
 
@@ -96,42 +83,41 @@ class DisplayFilms extends React.Component {
         let end = Math.min(totalPages, start + 5);
         if (currentPage > 0) {
             pages.push(
-                <li onClick={() => this.search(0)}>
-                    <a className="page-link">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span aria-hidden="true">&laquo;</span>
+                <li className="page-btn" onClick={() => this.search(0)}>
+                    <a href="#">
+                        &laquo;
                     </a>
                 </li>
             )
             pages.push(
-                <li onClick={() => this.search(currentPage - 1)}>
-                    <a className="page-link">
-                        <span aria-hidden="true">&laquo;</span>
+                <li className="page-btn" onClick={() => this.search(currentPage - 1)}>
+                    <a href="#">
+                        &lsaquo;
                     </a>
                 </li>
             )
         }
         for (let i = start; i < end; i++) {
             pages.push(
-                <li className={`page-item ${currentPage === i ? 'active' : ''}`} key={i} onClick={() => this.search(i)}>
-                    <a className="page-link" href="#">{i + 1}</a>
+                <li className={`page-btn ${currentPage === i ? 'active' : ''}`} key={i} onClick={() => this.search(i)}>
+                    {/* <a className="page-link" href="#">{i + 1}</a> */}
+                    <a href="#">{i + 1}</a>
                 </li>
             );
         }
 
         if(currentPage < totalPages - 1) {
             pages.push(
-                <li onClick={() => this.search(currentPage + 1)}>
-                    <a className="page-link">
-                        <span aria-hidden="true">&raquo;</span>
+                <li className="page-btn" onClick={() => this.search(currentPage + 1)}>
+                    <a href="#">
+                        &rsaquo;
                     </a>
                 </li>
             )
             pages.push(
-                <li onClick={() => this.search(totalPages - 1)}>
-                    <a className="page-link">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span aria-hidden="true">&raquo;</span>
+                <li className="page-btn" onClick={() => this.search(totalPages - 1)}>
+                    <a href="#">
+                        &raquo;
                     </a>
                 </li>
             )
@@ -151,9 +137,9 @@ class DisplayFilms extends React.Component {
         return (
             <div className="display-center">
                 <h1>Display Films</h1>
-                <div className="col-xs-6 col-sm-6">
+               <div className="col-xs-6 col-sm-6 search-container">
                     <input className="form-control" onChange={this.filter} value={filterBy} placeholder={'Filter here'} />
-                    <button onClick={this.filterResults}>Search</button>
+                    <div onClick={this.filterResults}>&#128269;</div>
                 </div>
                 <table className="display-films-tbl table table-striped table-bordered table-hover">
                     <thead className="table-header">
@@ -165,7 +151,7 @@ class DisplayFilms extends React.Component {
                             <th scope="col" onClick={() => this.sortFilms('rating')}>Rating</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="table-font">
                         {
                             data.map((film, index) => (
                                 <tr key={index} onClick={() => this.filmSelected(film)}>

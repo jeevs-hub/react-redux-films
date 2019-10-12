@@ -37,10 +37,7 @@ class SelectFilmPage extends React.Component {
             })
             .finally(() => this.setState({ ...this.state, loading: false }))
         }
-
     }
-
-
 
     render() {
         const { filmInfo, isEdit } = this.state;
