@@ -10,8 +10,8 @@
   
 .btn-login {
     /* border: #fff 2px solid !important; */
-    border: #fff 1px solid !important;
-    color: #fff!important;
+    border: #a8884a 1px solid !important;
+    color: #a8884a!important;
   }
   
   .btn-login:hover{
@@ -19,4 +19,6 @@
     background: #a8884a;
   }
   
-  
+  .login-form-group {
+    margin-bottom: 1rem;
+  }

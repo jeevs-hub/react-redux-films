@@ -1,59 +1,59 @@
+@import '../../../../styles/styles.scss';
+
 .last-form-row {
-    margin-bottom: 1px!important;
+  margin-bottom: 1px !important;
 }
 
 .dob-is-invalid > .react-date-picker__wrapper {
-    border-color: #dc3545;
+  border-color: #dc3545;
 }
 
 .btn-register {
-    margin-right:10px;
+  margin-right: 10px;
+  /* border: #fff 2px solid !important; */
+  border: $base-color 1px solid !important;
+  color: $base-color !important;
 }
 
-.react-date-picker{
-    border:0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #fff;
-    padding: 14px 10px;
-    width: 200px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;  
-  }
+.register-dob > .react-date-picker {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid $base-color;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
 
-  .dob-is-invalid .react-date-picker{
-    border: 2px solid #dc3545!important; 
-  }
+.dob-is-invalid .react-date-picker {
+  border: 2px solid #dc3545 !important;
+}
 
-  .dob {
-      margin-left: 23%;
-      text-align: center;
-  }    
-.btn-register {
-    /* border: #fff 2px solid !important; */
-    border: #fff 1px solid !important;
-    color: #fff!important;
-  }
-  
-  .btn-register:hover{
-    border: #a8884a 2px solid !important;
-    background: #a8884a;
-  }
-  
-  .is-invalid {
-    border:2px solid #dc3545!important;
-    margin-bottom: 0px!important;
-  }
-  
-  .error-field {
-    text-align: center;
-    color: #dc3545;
-  }
+.dob {
+  margin-left: 23%;
+  text-align: center;
+}
 
-  .reg-footer {
-      margin-bottom: 10px;
-  }
+.btn-register:hover {
+  border: $base-color 2px solid !important;
+  background: $base-color;
+}
+
+.is-invalid {
+  border: 2px solid #dc3545 !important;
+  margin-bottom: 0px !important;
+}
+
+.error-field {
+  text-align: center;
+  color: #dc3545;
+}
+
+.reg-footer {
+  margin-bottom: 10px;
+}

@@ -63,6 +63,7 @@ class RegisterForm extends React.Component {
             this.props.register(user)
                 .then(() => this.props.userAuthenticated())
                 .catch(err => {
+                    console.log("err ", err)
                     console.error("errors when trying to login ", err.response.data.error.message);
                     if(err.response.data.error.status === 400) {
                         this.props.displayErrorMessage(err.response.data.error.message);
@@ -108,7 +109,7 @@ class RegisterForm extends React.Component {
                                 <div className="col-sm-6">
                                     Date of Birth: 
                                 </div>
-                                <div className={`col-sm-6 ${errors.dateOfBirth ? 'dob-is-invalid' : ''}`}>
+                                <div className={`col-sm-6 register-dob ${errors.dateOfBirth ? 'dob-is-invalid' : ''}`}>
                                     <DatePicker name="dateOfBirth" onChange={(e) => this.onChange({target: { name: 'dateOfBirth', value: e}})} value={data.dateOfBirth} maxDate={new Date()} />
                                     {errors.dateOfBirth &&
                                     <div className="error-field">

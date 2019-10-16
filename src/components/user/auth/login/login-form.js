@@ -33,6 +33,7 @@ class LoginForm extends React.Component {
     };
 
     onSubmit = (e) => {
+        console.log("triggered")
         e.preventDefault();
         const errors = this.validate(this.state.data);
         this.setState({ errors });
@@ -69,15 +70,15 @@ class LoginForm extends React.Component {
                     <FadeLoader sizeUnit={"px"} size={25} color={'#123abc'} loading={this.state.loading} />
                 </div>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group col-sm-12">
-                        <div className="form-group row">
-                              <input class="forminput" type="text" name="username" placeholder="Email" onChange={this.onChange} value={data.username}/>
+                    <div className="login-form-group col-sm-12">
+                        <div className="login-form-group row">
+                              <input className="forminput" type="text" name="username" placeholder="Email" onChange={this.onChange} value={data.username}/>
                         </div>
-                        <div className="form-group row">
-                            <input class="forminput"  type="password" name="password" placeholder="Password" onChange={this.onChange} value={data.password}/>
+                        <div className="login-form-group row">
+                            <input className="forminput"  type="password" name="password" placeholder="Password" onChange={this.onChange} value={data.password}/>
                         </div>
-                        <div className="form-group login-form-footer">
-                            <span className="float-left">Reset password</span>
+                        <div className="login-form-group login-form-footer">
+                            {/* <span className="float-left">Reset password</span> */}
                             <button type="submit" className="btn btn-login float-right">Sign In</button>
                         </div>
                     </div>

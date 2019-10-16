@@ -38,6 +38,7 @@ class CreateFilm extends React.Component {
     }
 
     saveFilm = () => {
+        console.log("save film triggered")
         const { filmInfo, isEdit } = this.props;
         const film = {
             film_api_id: filmInfo.film_api_id,
@@ -45,9 +46,9 @@ class CreateFilm extends React.Component {
             filmName: filmInfo.name,
             date: filmInfo.date,
             rating: filmInfo.rating,
+            runtime: filmInfo.runtime,
             data: {
                 summary: filmInfo.summary,
-                runtime: filmInfo.runtime,
                 genres: filmInfo.genres,
                 additionalNotes: this.state.data.additionalNotes,
                 photoUrl: filmInfo.imgUrl
@@ -118,7 +119,7 @@ class CreateFilm extends React.Component {
                     {this.getForwardArrow()}
                 </div>
                 <div className="col-sm-10 col-md-10 footer">
-                    <button className="btn btn-primary float-right" disabled={!this.canGoNextPage()} >
+                    <button className="btn btn-primary float-right" onClick={() => this.saveFilm()}  disabled={!this.props.filmInfo.name} >
                         Save
                     </button>
                 </div>
@@ -126,16 +127,6 @@ class CreateFilm extends React.Component {
         )
     }
 }
-{/* <div className="footer">
-                    <button className="btn btn-primary float-left" disabled={currentPage === 0} onClick={() => this.setState({ ...this.state, currentPage: currentPage - 1 })}>
-                        Back
-                    </button>
-                    <button className="btn btn-primary float-right" disabled={!this.canGoNextPage()} onClick={() =>
-                        currentPage === 0 ? this.setState({ ...this.state, currentPage: currentPage + 1 }) :
-                            this.saveFilm()}>
-                        {currentPage === 0 ? 'Next' : isEdit ? 'Update' : 'Save'}
-                    </button>
-                </div> */}
 
 CreateFilm.propTypes = {
     location: PropTypes.shape({

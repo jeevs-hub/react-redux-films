@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logout } from '../../redux/actions/user-actions';
 import './naviation-bar.scss'
-const TopNavigation = ({ user, logout }) => (
+const TopNavigation = ({ logout }) => (
     <nav className="navbar navbar-expand bg-theme">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
                     <a className="nav-link" href="/dashboard">
-                        <button className="btn btn-nav btn-hover btn1">Home</button>
+                        <button className="btn btn-nav btn-hover btn1">
+                            Home
+                        </button>
                     </a>
                 </li>
                 <li className="nav-item">
@@ -26,13 +28,13 @@ const TopNavigation = ({ user, logout }) => (
 );
 
 TopNavigation.propTypes = {
-    user: PropTypes.string.isRequired,
+    // user: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
     return {
-        user: state.user.token
+        // user: state.user.token
     }
 }
 

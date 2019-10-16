@@ -31,7 +31,6 @@ class AdditionalDetailsPage extends React.Component {
     render() {
         const { filmInfo, data } = this.state;
         const genresOptions = filmInfo.genres.map((g, index) => <option key={index}>{g}</option>)
-        console.log(" test ", data.watchByDate);
         return (
             <div className="col-xs-12 col-sm-12">
                 <h1>Additional Information for {filmInfo.name}</h1>
@@ -62,7 +61,7 @@ class AdditionalDetailsPage extends React.Component {
                     <div className="col-xs-6 col-sm-5 container-add-info">
                         <div className="row">
                             <div className="col-xs-12 col-sm-12"> Release Date:  </div>
-                            <div className="col-xs-12 col-sm-12">{filmInfo.date}</div>
+                            <div className="col-xs-12 col-sm-12">{new Date(filmInfo.date).toLocaleDateString()}</div>
                         </div>
                     </div>
                     <div className="col-xs-6 col-sm-5 container-add-info">

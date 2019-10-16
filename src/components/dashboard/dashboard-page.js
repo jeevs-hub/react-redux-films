@@ -12,8 +12,6 @@ class DashboardPage extends React.Component {
     }
 
     onChange = (e) => this.setState({ showLogin: e });
-
-    userAuthenticated = () => this.props.history.push('/dashboard');
     
     displayErrorMessage = (msg) => toast.error(msg, {
         position: toast.POSITION.TOP_CENTER

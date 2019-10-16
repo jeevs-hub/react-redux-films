@@ -3,12 +3,19 @@
 
 .table-header {
     cursor: pointer;
-    background-color: #212529;
-    border-color: #32383e;
+}
+
+.display-center {
+    margin-top: 2vh;
+}
+
+.display-center {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 .table-font {
-    color: #212529;
+    color: $base-color;
 }
 
 .ReactModal__Content {
@@ -34,6 +41,9 @@
 
 .display-films-tbl {
     margin-top: 5px;
+    background-color: #212529!important;
+    border-color: #32383e!important;
+    color: $base-color;
 }
 
 .footer-center {
@@ -70,6 +80,14 @@
 
 .search-container {
     display:flex;
+}
+
+.search-container>input {
+    margin-left: 63vh
+}
+
+.search-container>button {
+    margin-left:auto;
 }
 
 .search-container > input, .search-container > div {

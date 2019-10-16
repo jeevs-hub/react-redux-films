@@ -22,8 +22,6 @@ class SelectFilmPage extends React.Component {
         this.setState({...this.state, filmInfo: nextProps.filmInfo})
     }
 
-    userAuthenticated = () => this.props.history.push('/dashboard');
-
     displayErrorMessage = (msg) => toast.error(msg, {
         position: toast.POSITION.TOP_CENTER
     });

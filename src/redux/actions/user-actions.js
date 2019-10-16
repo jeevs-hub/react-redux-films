@@ -10,7 +10,6 @@ axios.post(`${url}login`, user)
     .then((user) => {
         localStorage.jwt = user.token;
         setAuthorizationHeader(user.token);
-        console.log("the user ", JSON.stringify(user))
         return dispatch({
             type: LOGIN,
             payload: user.token
@@ -25,7 +24,7 @@ export const register = (user) => (dispatch) =>
             setAuthorizationHeader(user.token);
             console.log("the user ", JSON.stringify(user))
             return dispatch({
-                type: REGISTER,
+                type: LOGIN,
                 payload: user.token
             })
         })

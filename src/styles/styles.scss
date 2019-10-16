@@ -4,16 +4,25 @@ $inactive-color: #f2f5f9;
 
 $primary-border-color: #dee1e5;
 
-$background-color: #f8f9fa;
+$background-color: lightgrey;
+// $background-color: #4a6aa8;
+
 // $theme-color: #60BAD5;
 $theme-color: #222222;
 
 $base-color: #a8884a;
 // $base-color: #3498db;
 
+h1 {
+    color: #212529!important;
+    font-family: serif!important;
+    font-weight: bold!important;
+}
+
 .App {
     background-color: $background-color;
-    height: 100vh;
+    height: 100%;
+    // height: 100vh;
     color: $base-color;
 }
 
@@ -33,7 +42,8 @@ h1 {
 
 //button
 button.btn.btn-primary {
-    border: $theme-color 1px solid !important
+    border: $theme-color 1px solid !important;
+    color: $base-color!important;
 }
 
 //styling for the react-spinners
@@ -47,7 +57,7 @@ button.btn.btn-primary {
 }
 
 .css-m8a9i5-wrapper > div {
-    background-color: $theme-color;
+    background-color: $base-color;
 }
 
 //styling for the react-date-picker
