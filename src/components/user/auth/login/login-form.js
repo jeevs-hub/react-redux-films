@@ -5,7 +5,7 @@ import { FadeLoader } from 'react-spinners';
 
 import constants from '../../../../utils/constants';
 import { login } from '../../../../redux/actions/user-actions';
-import './login-form.css';
+import './login-form.scss';
 
 class LoginForm extends React.Component {
     constructor(props) {

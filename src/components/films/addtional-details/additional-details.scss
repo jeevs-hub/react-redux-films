@@ -39,3 +39,29 @@
 .select-field { 
     height: 40px!important;
 }
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	.previous-next-btns { 
+		display: none; 
+    }
+    
+    .route-component {
+        overflow:scroll;
+    }
+
+    .dispaly-films-image {
+        display: none;
+    }
+
+    .genre-select-box {
+        margin-left: 11px;
+    }
+
+    .container-add-info > .row {
+        margin-left: 0%;
+    }
+
+}

@@ -7,6 +7,7 @@ import Ratings from 'react-ratings-declarative';
 
 import './display-films.scss';
 import { FadeLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 const url = `https://nodejs-film-service.herokuapp.com/`;
 
 class DisplayFilms extends React.Component {
@@ -139,6 +140,9 @@ class DisplayFilms extends React.Component {
         axios.post(`${url}addDummyData`)
             .then((res) => {
                 this.setState({ ...this.state, currentPage: 0 });
+                toast.success("Added dummy data", {
+                    position: toast.POSITION.TOP_CENTER
+                });            
                 this.props.fetchFilms(0, this.state.filterBy, this.state.previousSortedBy, this.state.isAsc);
             })
             .finally(() => this.setState({ ...this.state, loading: false }));

@@ -1,0 +1,34 @@
+@import '../../../../styles/styles.scss';
+
+.form-container {
+    margin-top: 10px;
+}
+
+.login-form-footer {
+    margin-top: 35px;
+}
+  
+.btn-login {
+    /* border: #fff 2px solid !important; */
+    border: $base-color 1px solid !important;
+    color: $base-color!important;
+  }
+  
+  .btn-login:hover{
+    border: $base-color 2px solid !important;
+    background: $base-color;
+  }
+  
+  .login-form-group {
+    margin-bottom: 1rem;
+  }
+
+  @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	.login-form-footer {
+    margin-top: 0px;
+  }
+
+}

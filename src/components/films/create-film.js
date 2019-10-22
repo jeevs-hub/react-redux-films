@@ -118,8 +118,14 @@ class CreateFilm extends React.Component {
                     {this.getForwardArrow()}
                 </div>
                 <div className="col-sm-10 col-md-10 footer">
-                    <button className="btn btn-primary float-right" onClick={() => this.saveFilm()}  disabled={!this.props.filmInfo.name} >
+                    <button className="btn btn-primary float-right next-prev-btn" onClick={this.goNext}  disabled={!this.props.filmInfo.name} >
+                        Next
+                    </button>
+                    <button className="btn btn-primary save-btn" onClick={() => this.saveFilm()}  disabled={!this.props.filmInfo.name} >
                         Save
+                    </button>
+                    <button className="btn btn-primary float-left next-prev-btn" onClick={this.goPrevious}  disabled={this.state.currentPage === 0} >
+                        Previous
                     </button>
                 </div>
             </div>
