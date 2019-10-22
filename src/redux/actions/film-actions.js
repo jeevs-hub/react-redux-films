@@ -1,18 +1,24 @@
-import { FETCH_FILMS, NEW_FILM, FILM_INFO, FILM_CREATED, FILM_SELECTED } from '../types/film-types';
+import { FETCH_FILMS, FILM_INFO, FILM_CREATED, FETCH_FILMS_STARTED } from '../types/film-types';
 import axios from 'axios';
-import setAuthorizationHeader from '../../utils/setAuthorizationHeader';
+import { LOGOUT } from '../types/user-types';
+import setAuthorizationHeader from "../../utils/setAuthorizationHeader";
 const url = `https://nodejs-film-service.herokuapp.com/`;
 
-export const fetchFilms = (offset, filter, orderBy, asc) => (dispatch) =>
-    axios.get(`${url}?offset=${offset}&limit=${10}&filter=${filter}&order=${orderBy}&orderAsc=${asc}`)
+export const fetchFilms = (offset, filter, orderBy, asc) => (dispatch) => {
+    dispatch({
+        type: FETCH_FILMS_STARTED,
+    })
+    return axios.get(`${url}?offset=${offset}&limit=${10}&filter=${filter}&order=${orderBy}&orderAsc=${asc}`)
         .then((data) => data.data)
-        .catch((x) =>  {
-            if(x.response.data.message === "Error validating token") {
-                console.log("logout triggered")
-                localStorage.removeItem("jwt");
-                setAuthorizationHeader();            
-            }
-        })
+        // .catch((x) => {
+        //     if (x.response.data.message === "Error validating token") {
+        //         localStorage.removeItem("jwt");
+        //         setAuthorizationHeader();            
+        //         return dispatch({
+        //             type: LOGOUT
+        //         })
+        //     }
+        // })
         .then((films) => {
             if (films && films.data) {
                 return dispatch({
@@ -21,7 +27,7 @@ export const fetchFilms = (offset, filter, orderBy, asc) => (dispatch) =>
                 })
             }
         });
-
+}
 export const getFilmInfo = (filmId) => (dispatch) =>
     axios.get(`${url}search/${filmId}`)
         .then((data) => dispatch({

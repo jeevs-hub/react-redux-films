@@ -3,3 +3,4 @@ export const NEW_FILM = "NEW_FILM";
 export const FILM_INFO = "FILM_INFO";
 export const FILM_CREATED = "FILM_CREATED";
 export const FILM_SELECTED = "FILM_SELECTED";
+export const FETCH_FILMS_STARTED = "FETCH_FILMS_STARTED";

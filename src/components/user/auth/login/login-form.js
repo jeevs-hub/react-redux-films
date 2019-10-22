@@ -33,7 +33,6 @@ class LoginForm extends React.Component {
     };
 
     onSubmit = (e) => {
-        console.log("triggered")
         e.preventDefault();
         const errors = this.validate(this.state.data);
         this.setState({ errors });

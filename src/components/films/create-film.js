@@ -38,7 +38,6 @@ class CreateFilm extends React.Component {
     }
 
     saveFilm = () => {
-        console.log("save film triggered")
         const { filmInfo, isEdit } = this.props;
         const film = {
             film_api_id: filmInfo.film_api_id,

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchFilms, filmSelected } from '../../../redux/actions/film-actions';
 import axios from 'axios';
+import Ratings from 'react-ratings-declarative';
 
 import './display-films.scss';
 import { FadeLoader } from 'react-spinners';
@@ -22,13 +23,11 @@ class DisplayFilms extends React.Component {
             totalPages: 0,
             currentPage: 0,
             count: 0,
-            loading: false,
             pageSize: 10
         }
     }
 
     componentWillMount() {
-        console.log("mounts")
         const { filterBy, previousSortedBy, isAsc } = this.state;
         this.props.fetchFilms(0, filterBy, previousSortedBy, isAsc);
     }
@@ -36,7 +35,6 @@ class DisplayFilms extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { data } = this.state;
         if (data !== nextProps.films) {
-            console.log("changed")
             const totalPages = Math.ceil(nextProps.count / this.state.pageSize);
             this.setState({ ...this.state, data: nextProps.films, count: nextProps.count, totalPages });
         }
@@ -136,26 +134,32 @@ class DisplayFilms extends React.Component {
     }
 
     addRandomFilms = () => {
-        this.setState({...this.state, loading: true});
+        this.setState({ ...this.state, loading: true });
 
         axios.post(`${url}addDummyData`)
             .then((res) => {
-                this.setState({...this.state, currentPage: 0});
+                this.setState({ ...this.state, currentPage: 0 });
                 this.props.fetchFilms(0, this.state.filterBy, this.state.previousSortedBy, this.state.isAsc);
             })
-            .finally(() => this.setState({...this.state, loading: false}));
+            .finally(() => this.setState({ ...this.state, loading: false }));
     }
 
     showSortIcon = (sortedCol) => {
-        if(this.state.previousSortedBy === sortedCol){
+        if (this.state.previousSortedBy === sortedCol) {
             return this.state.isAsc ? <span>&#11165;</span> : <span>&#11167;</span>;
         }
     }
 
-    render() {
+    deleteFilter = () => {
+        this.setState({ ...this.state, filterBy: '', previousSortedBy: 'name', isAsc: true }, () => {
+            this.filterResults();
+        });
+    }
 
-        const { data, filterBy, loading } = this.state;
-        // const { firstName } = this.props;
+    render() {
+        const { data, filterBy } = this.state;
+        const { loading, firstName } = this.props;
+
         const pages = this.getPages();
         return (
             <div className="display-center">
@@ -163,11 +167,14 @@ class DisplayFilms extends React.Component {
                     <FadeLoader sizeUnit={"px"} size={25} color={'#123abc'} loading={loading} />
                 </div>
                 <div className="col-sm-12">
-                    {/* <h1>Hi {firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : ''}, view your films</h1> */}
+                    <h1>Hi {firstName ? firstName.charAt(0).toUpperCase() + firstName.slice(1) : ''}, view your films</h1>
                 </div>
                 <div className="col-xs-12 col-sm-12 search-container">
-                    <input className="form-control col-sm-4" onChange={this.filter} value={filterBy} placeholder={'Filter here'} />
-                    <div onClick={this.filterResults}>&#128269;</div>
+                    <div className="inputWithIcon col-sm-5">
+                        <input className="form-control" onChange={this.filter} value={filterBy} placeholder={'Filter here'} />
+                        <i onClick={this.filterResults} className="fa fa-search fa-lg fa-fw search-icon"></i>
+                        <i onClick={this.deleteFilter} className="fa fa-times fa-lg fa-fw delete-icon"></i>
+                    </div>
                     <button className="btn btn-primary" onClick={this.addRandomFilms}>Add Random Films</button>
                 </div>
                 <table className="display-films-tbl table table-striped table-bordered table-hover">
@@ -188,7 +195,21 @@ class DisplayFilms extends React.Component {
                                     <td>{film.runtime ? this.getRunTime(film.runtime) : 'No runtime on file,\nusually a sample film'}</td>
                                     <td>{new Date(film.date).toLocaleDateString()}</td>
                                     <td>{new Date(film.watchByDate).toISOString().split('T')[0]}</td>
-                                    <td>{film.rating}</td>
+                                    {/* <td>{film.rating}</td> */}
+                                    <td>
+                                        <Ratings
+                                            rating={film.rating / 2}
+                                            widgetRatedColors="rgb(218,165,32)"
+                                            widgetHoverColors="rgb(218,165,32)"
+                                            changeRating={this.changeRating}
+                                        >
+                                            <Ratings.Widget widgetDimension="15px" />
+                                            <Ratings.Widget widgetDimension="15px" />
+                                            <Ratings.Widget widgetDimension="15px" />
+                                            <Ratings.Widget widgetDimension="15px" />
+                                            <Ratings.Widget widgetDimension="15px" />
+                                        </Ratings>
+                                    </td>
                                 </tr>
                             ))
                         }
@@ -215,7 +236,8 @@ const mapStateToProps = (state) => ({
     films: state.films.films,
     count: state.films.count,
     newFilm: state.films.film,
-    // firstName: state.user.firstName
+    loading: state.films.loading,
+    firstName: state.user.firstName
 })
 
 export default connect(mapStateToProps, { fetchFilms, filmSelected })(DisplayFilms);

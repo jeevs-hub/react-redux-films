@@ -15,7 +15,8 @@
 }
 
 .table-font {
-    color: $base-color;
+    color: lightgrey;
+    // color: $base-color;
 }
 
 .ReactModal__Content {
@@ -31,9 +32,9 @@
     margin-left: 25%;
 }
 
-// .film-modal-title {
-//     // text-align: center;
-// }
+.search-container>div {
+    cursor: pointer;
+}
 
 .rating-modal {
     margin-left: 10px;
@@ -82,8 +83,9 @@
     display:flex;
 }
 
-.search-container>input {
-    margin-left: 63vh
+.search-container>input, .search-container>.inputWithIcon {
+    // margin-left: 63vh
+    margin-left: 56vh;
 }
 
 .search-container>button {
@@ -97,3 +99,60 @@
 .search-container > div {
     margin-top: 8px;
 }
+
+input[type="text"] {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+  }
+  
+  .inputWithIcon input[type="text"] {
+    padding-left: 40px;
+  }
+  
+  .inputWithIcon {
+    position: relative;
+  }
+  
+  .inputWithIcon i {
+    position: absolute;
+    top: 2px;
+    padding: 9px 8px;
+    color: #aaa;
+    transition: 0.3s;
+  }
+
+  .delete-icon {
+    right: 23px;
+  }
+
+  .search-icon {
+    right: 50px;
+  }
+  
+  .inputWithIcon input[type="text"]:focus + i {
+    color: dodgerBlue;
+  }
+  
+  .inputWithIcon.inputIconBg i {
+    background-color: #aaa;
+    color: #fff;
+    padding: 9px 4px;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .inputWithIcon.inputIconBg input[type="text"]:focus + i {
+    color: #fff;
+    background-color: dodgerBlue;
+  }
+  

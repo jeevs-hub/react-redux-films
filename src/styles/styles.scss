@@ -14,7 +14,7 @@ $base-color: #a8884a;
 // $base-color: #3498db;
 
 h1 {
-    color: #212529!important;
+    color: $base-color!important;
     font-family: serif!important;
     font-weight: bold!important;
 }
